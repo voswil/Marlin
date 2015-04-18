@@ -2582,9 +2582,9 @@ void clamp_to_software_endstops(float target[3])
 void calculate_delta(float cartesian[3])
 {
   //trossen tutorial puts the "X" in the front/middle. FPD puts this arm in the back/middle for aesthetics.
-  float rotated_x = -1 * cartesian[X_AXIS];
-  float rotated_y = -1 * cartesian[Y_AXIS];      //SCALED BY JOE * by 0.917
-  float z_with_offset = cartesian[Z_AXIS] + Z_CALC_OFFSET; //The delta calc below places zero at the top.  Subtract the Z offset to make zero at the bottom.
+  float rotated_x = -1.03 * cartesian[X_AXIS] +  0 * cartesian[Y_AXIS] + 0 * (cartesian[Z_AXIS] + Z_CALC_OFFSET);
+  float rotated_y = 0 * cartesian[X_AXIS] +  -1.016 * cartesian[Y_AXIS] + 0 * (cartesian[Z_AXIS] + Z_CALC_OFFSET);      //SCALED BY JOE * by 0.917
+  float z_with_offset = 0 * cartesian[X_AXIS] +  0 * cartesian[Y_AXIS] + 1 * (cartesian[Z_AXIS] + Z_CALC_OFFSET); //The delta calc below places zero at the top.  Subtract the Z offset to make zero at the bottom.
   
   int status =              delta_calcAngleYZ(rotated_x,                           rotated_y,                         z_with_offset, delta[X_AXIS]);
   if (status == 0) status = delta_calcAngleYZ(rotated_x*cos120 + rotated_y*sin120, rotated_y*cos120-rotated_x*sin120, z_with_offset, delta[Y_AXIS]);  // rotate coords to +120 deg
