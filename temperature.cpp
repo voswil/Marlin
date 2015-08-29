@@ -70,6 +70,11 @@ unsigned char soft_pwm_bed;
 #ifdef BABYSTEPPING
   volatile int babystepsTodo[3]={0,0,0};
 #endif
+
+int WindowSize = 5000;
+unsigned long windowStartTime = 0;
+
+
   
 //===========================================================================
 //=============================private variables============================
@@ -1065,7 +1070,17 @@ ISR(TIMER0_COMPB_vect)
     #endif
     #if defined(HEATER_BED_PIN) && HEATER_BED_PIN > -1
     soft_pwm_b = soft_pwm_bed;
-    if(soft_pwm_b > 0) WRITE(HEATER_BED_PIN,1); else WRITE(HEATER_BED_PIN,0);
+   if(soft_pwm_b > 0) WRITE(HEATER_BED_PIN,1); else WRITE(HEATER_BED_PIN,0);//----------------------------------------------------------
+//      unsigned long now = millis();
+//    if(now - windowStartTime>WindowSize)
+//    { //time to shift the Relay Window
+//    windowStartTime += WindowSize;
+//    }
+//    if(soft_pwm_b > now - windowStartTime) WRITE(HEATER_BED_PIN,1); 
+//   else WRITE(HEATER_BED_PIN,0);
+    
+    
+    
     #endif
     #ifdef FAN_SOFT_PWM
     soft_pwm_fan = fanSpeedSoftPwm / 2;
