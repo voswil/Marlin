@@ -71,7 +71,7 @@ unsigned char soft_pwm_bed;
   volatile int babystepsTodo[3]={0,0,0};
 #endif
 
-int WindowSize = 5000;
+int WindowSize = 10000;
 unsigned long windowStartTime = 0;
 
 
@@ -1070,14 +1070,24 @@ ISR(TIMER0_COMPB_vect)
     #endif
     #if defined(HEATER_BED_PIN) && HEATER_BED_PIN > -1
     soft_pwm_b = soft_pwm_bed;
-   if(soft_pwm_b > 0) WRITE(HEATER_BED_PIN,1); else WRITE(HEATER_BED_PIN,0);//----------------------------------------------------------
-//      unsigned long now = millis();
-//    if(now - windowStartTime>WindowSize)
-//    { //time to shift the Relay Window
-//    windowStartTime += WindowSize;
-//    }
-//    if(soft_pwm_b > now - windowStartTime) WRITE(HEATER_BED_PIN,1); 
-//   else WRITE(HEATER_BED_PIN,0);
+   SERIAL_PROTOCOLLNPGM("SOFT_PWM_B");
+   SERIAL_PROTOCOLLN((float) soft_pwm_b);
+//   if(soft_pwm_b > 0) WRITE(HEATER_BED_PIN,1); else WRITE(HEATER_BED_PIN,0);//----------------------------------------------------------
+      unsigned long now = millis();
+    if(now - windowStartTime>WindowSize)
+    { //time to shift the Relay Window
+    windowStartTime += WindowSize;
+    }
+    if(10*soft_pwm_b > now - windowStartTime) 
+    {
+    WRITE(HEATER_BED_PIN,1);
+    SERIAL_PROTOCOLLNPGM("ON");
+    } 
+   else
+   {
+   WRITE(HEATER_BED_PIN,0);
+   SERIAL_PROTOCOLLNPGM("OFF");
+   }
     
     
     
