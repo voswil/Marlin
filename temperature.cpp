@@ -1070,23 +1070,24 @@ ISR(TIMER0_COMPB_vect)
     #endif
     #if defined(HEATER_BED_PIN) && HEATER_BED_PIN > -1
     soft_pwm_b = soft_pwm_bed;
-   SERIAL_PROTOCOLLNPGM("SOFT_PWM_B");
-   SERIAL_PROTOCOLLN((float) soft_pwm_b);
+   //SERIAL_PROTOCOLLNPGM("SOFT_PWM_B");
+ //  SERIAL_PROTOCOLLN((float) soft_pwm_b);
 //   if(soft_pwm_b > 0) WRITE(HEATER_BED_PIN,1); else WRITE(HEATER_BED_PIN,0);//----------------------------------------------------------
       unsigned long now = millis();
     if(now - windowStartTime>WindowSize)
     { //time to shift the Relay Window
     windowStartTime += WindowSize;
     }
+    
     if(10*soft_pwm_b > now - windowStartTime) 
     {
     WRITE(HEATER_BED_PIN,1);
-    SERIAL_PROTOCOLLNPGM("ON");
+   // SERIAL_PROTOCOLLNPGM("ON");
     } 
    else
    {
    WRITE(HEATER_BED_PIN,0);
-   SERIAL_PROTOCOLLNPGM("OFF");
+  // SERIAL_PROTOCOLLNPGM("OFF");
    }
     
     
