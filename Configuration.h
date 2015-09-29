@@ -122,9 +122,9 @@
 
 // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 // Ultimaker
-    #define  DEFAULT_Kp 14.23//11.19//22.2       latest update after insulation removed from extruder
-    #define  DEFAULT_Ki 0.63//0.37//1.08
-    #define  DEFAULT_Kd 80.90//85.62//114
+    #define  DEFAULT_Kp 12.75//14.23//11.19//22.2     new insulation installed // previous update after insulation removed from extruder
+    #define  DEFAULT_Ki 0.50//0.63//0.37//1.08
+    #define  DEFAULT_Kd 81.66//80.90//85.62//114
 
 // MakerGear
 //    #define  DEFAULT_Kp 7.0
@@ -205,7 +205,7 @@
 #define DELTA_Z_OFFSET  203.2//???  268.000 // Distance from delta 8mm rod/pulley to table/bed.
 
 
-#define DELTA_EE_OFFS    18.35+11.54-23.88-0.5+1.5+0.4+6.5-2.2+1.8//15.0  // Ball joint plane to bottom of end effector surface.  
+#define DELTA_EE_OFFS    18.35+11.54-23.88-0.5+1.5+0.4+6.5-2.2+1.2//15.0  // Ball joint plane to bottom of end effector surface.  
 //Adding to this number increases the maximum build height 
 
 //#define TOOL_OFFSET       0.000 // No offset
