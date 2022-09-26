@@ -421,11 +421,11 @@ const bool Z_MAX_ENDSTOP_INVERTING = false;//true; // set to true to invert the 
 
 // EEPROM
 // The microcontroller can store settings in the EEPROM, e.g. max velocity...
-// M500 - stores parameters in EEPROM
-// M501 - reads parameters from EEPROM (if you need reset them after you changed them temporarily).
-// M502 - reverts to the default "factory settings".  You still need to store them in EEPROM afterwards if you want to.
-//define this to enable EEPROM support
-//#define EEPROM_SETTINGS
+ M500 - stores parameters in EEPROM
+ M501 - reads parameters from EEPROM (if you need reset them after you changed them temporarily).
+ M502 - reverts to the default "factory settings".  You still need to store them in EEPROM afterwards if you want to.
+define this to enable EEPROM support
+#define EEPROM_SETTINGS
 //to disable EEPROM Serial responses and decrease program space by ~1700 byte: comment this out:
 // please keep turned on if you can.
 //#define EEPROM_CHITCHAT
